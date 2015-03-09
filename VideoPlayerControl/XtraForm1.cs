@@ -23,8 +23,8 @@ namespace VideoPlayerControl
 
         private void OnLoad(object sender, EventArgs eventArgs)
         {
-            videoPlayerXtraUserControl1.Duration = TimeSpan.FromMilliseconds(21958);
-            videoPlayerXtraUserControl1.Init(@"rtmp://localhost:1935/archive-tvz/{43c6fca9-0080-4207-996e-2cb79838053f}?from=1425830988122&to=1425831010080"); 
+            videoPlayerXtraUserControl1.Duration = TimeSpan.FromMilliseconds(94883);
+            videoPlayerXtraUserControl1.Init( @"rtmp://localhost:1935/archive-tvz/{749b84ad-0080-4c5a-88f6-8670fdf551ea}?from=1425929256523&to=1425929351406" );
         }
     }
 }

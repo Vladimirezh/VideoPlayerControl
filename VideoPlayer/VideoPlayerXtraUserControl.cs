@@ -10,7 +10,6 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 using VideoPlayer.Properties;
 using Vlc.DotNet.Core;
-using Vlc.DotNet.Core.Interops.Signatures;
 using Vlc.DotNet.Forms;
 using Vlc.DotNet.Forms.TypeEditors;
 
@@ -54,7 +53,7 @@ namespace VideoPlayer
                 duration = value;
                 ProcessProgress();
             }
-            get { return duration; }
+           private get { return duration; }
         }
 
         public bool ShowNavigation { set; get; }
@@ -97,7 +96,9 @@ namespace VideoPlayer
         private void PlayerControlOnPlaying()
         {
             layoutControlItemImage.Visibility = LayoutVisibility.Never;
-            layoutControlItemVideo.Visibility = layoutControlItemButton.Visibility = layoutControlIteProgress.Visibility = LayoutVisibility.Always;
+            layoutControlItemVideo.Visibility = LayoutVisibility.Always;
+            if ( ShowNavigation )
+                layoutControlItemButton.Visibility = layoutControlIteProgress.Visibility = LayoutVisibility.Always;
             simpleButtonPlayStop.Image = Resources.pause_32;
         }
 
@@ -152,8 +153,6 @@ namespace VideoPlayer
 
         private void progressBarControl1_MouseDown( object sender, MouseEventArgs e )
         {
-            if ( playerControl.State != MediaStates.Playing && playerControl.State != MediaStates.Stopped )
-                playerControl.Play( videoUrl );
             playerControl.Time = GetTimeValue( e.Location );
         }
 
