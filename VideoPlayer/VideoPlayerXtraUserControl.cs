@@ -28,7 +28,6 @@ namespace VideoPlayer
         public VideoPlayerXtraUserControl()
         {
             InitializeComponent();
-            ProcessProgress();
         }
 
         [Category( "Video control settings" )]
@@ -39,21 +38,6 @@ namespace VideoPlayer
 // ReSharper disable once UnusedMember.Global
             set { playerControl.VlcLibDirectory = value; }
             get { return playerControl.VlcLibDirectory; }
-        }
-
-// ReSharper disable once MemberCanBePrivate.Global
-        public TimeSpan Duration
-        {
-// ReSharper disable once UnusedMember.Global
-            set
-            {
-                if ( duration == value )
-                    return;
-
-                duration = value;
-                ProcessProgress();
-            }
-           private get { return duration; }
         }
 
         public bool ShowNavigation { set; get; }
@@ -95,6 +79,7 @@ namespace VideoPlayer
 
         private void PlayerControlOnPlaying()
         {
+            progressBarControl1.Properties.Maximum = Convert.ToInt32( playerControl.GetCurrentMedia().Duration.TotalMilliseconds );
             layoutControlItemImage.Visibility = LayoutVisibility.Never;
             layoutControlItemVideo.Visibility = LayoutVisibility.Always;
             if ( ShowNavigation )
@@ -144,11 +129,6 @@ namespace VideoPlayer
                 repeatSubscription.Dispose();
             pictureEdit1.Image = Resources.WaitGear;
             playerControl.Play( videoUrl );
-        }
-
-        private void ProcessProgress()
-        {
-            progressBarControl1.Properties.Maximum = Convert.ToInt32( Duration.TotalMilliseconds );
         }
 
         private void progressBarControl1_MouseDown( object sender, MouseEventArgs e )

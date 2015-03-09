@@ -52,7 +52,6 @@
             // 
             // videoPlayerXtraUserControl1
             // 
-            this.videoPlayerXtraUserControl1.Duration = System.TimeSpan.Parse("00:00:00");
             this.videoPlayerXtraUserControl1.Location = new System.Drawing.Point(12, 12);
             this.videoPlayerXtraUserControl1.Name = "videoPlayerXtraUserControl1";
             this.videoPlayerXtraUserControl1.ShowNavigation = false;
